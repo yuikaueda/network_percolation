@@ -7,8 +7,8 @@
 #include<fstream>
 
 #define N 100
-//#define L 8e-1
-#define b_max M_PI/6
+#define L 3e-1
+#define b_max M_PI/2
 
 
 typedef struct{
@@ -86,36 +86,24 @@ int main(void){
   int row = 5;
   double b;
   int p;
-  int M = 1000;
+  int M = 10;
   double P;
-  double L;
 
   p = 0;
-  L = 1e-1;
 
-  FILE* fp0;
-  fp0 = fopen("pl_30.dat", "w");
-  if(fp0==NULL){
-	  printf("File open faild");
+
+  for(int i = 0; i < N; i++){
+
+    mat[i].conect = 0;
+    mat[i].x1 = (double)rand()/RAND_MAX;
+    mat[i].y1 = (double)rand()/RAND_MAX;
+    
+    b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
+    
+    mat[i].x2 = mat[i].x1 + L*sin(b);
+    mat[i].y2 = mat[i].y1 + L*cos(b);
+
   }
-
-  for(int l = 1; l < 30; l++){
-
-  	for(int k = 0; k < M; k++){
-
-
- 	 for(int i = 0; i < N; i++){
-
-    		mat[i].conect = 0;
-    		mat[i].x1 = (double)rand()/RAND_MAX;
-    		mat[i].y1 = (double)rand()/RAND_MAX;
-    
-    		b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
-    
-    		mat[i].x2 = mat[i].x1 + L*sin(b);
-    		mat[i].y2 = mat[i].y1 + L*cos(b);
-
-  	}
 
 /*
  mat[0].x1 = 0;
@@ -130,48 +118,51 @@ int main(void){
  mat[1].conect = 0;
 */
   
- 	for(int i = 0; i < N; i++){
-	 	if(mat[i].y1 <= 0.3){
-		 	mat[i].conect = 1;
-	 	}
- 	}
+ for(int i = 0; i < N; i++){
+	 if(mat[i].y1 <= 0.3){
+		 mat[i].conect = 1;
+	 }
+ }
 
 
   //show(mat, col, row);
-  	qsort(mat, col, sizeof(mat[0]), cmp);
+  qsort(mat, col, sizeof(mat[0]), cmp);
   //show(mat, col, row);
 
-  	for(int i = 0; i < N; i++){
-	  	if(mat[i].conect == 1){
+  for(int i = 0; i < N; i++){
+	  if(mat[i].conect == 1){
 		  //mat[i].conect = 1;
-		  	int j = i + 1;
-		  	for(int k = j; j < N; j++){
-			  	if(mat[j].conect == 0){
-			  	mat[j].conect = intersection(mat, i, j);
-			  	}
+		  int j = i + 1;
+		  for(int k = j; j < N; j++){
+			  if(mat[j].conect == 0){
+			  mat[j].conect = intersection(mat, i, j);
+			  }
 			 // else break;
-	          	}
-	  	}	
-  	}
+	          }
+	  }
+  }
 
   //show(mat, col, row);
 
-  	for(int i = N - 1; i >= 0; i--){
-	  	if(mat[i].y2 >= 1 && mat[i].conect == 1)
-	  	  	p += 1;
-	  	  	break;
-  	}
+  for(int i = N - 1; i >= 0; i--){
+	  if(mat[i].y2 >= 1 && mat[i].conect == 1)
+	  	  p += 1;
+	  	  break;
+  }
   
-  	}
-  P =(double)p / (double)M;
-  printf("P=%f\np=%d\n",P,p);
-  fprintf(fp0, "%f\t%f\n",L,P);
- 
-  p = 0;
-  L += 2.5e-2;
+  FILE* fp0;
+  fp0 = fopen("dis_90.dat" , "w");
+  if(fp0==NULL){
+	  printf("File open faild.");
+  }
 
+  for(int i=0; i<N; i++){
+	  fprintf(fp0, "%f\t%f\t%f\t%f\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect);
   }
   fclose(fp0);
 
+  P =(double)p / (double)M;
+  printf("P=%f\np=%d\n",P,p);
   return 0;
+
 }
