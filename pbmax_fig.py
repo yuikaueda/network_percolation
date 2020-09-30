@@ -13,8 +13,8 @@ p2 = data2[:,1]
 
 fig, axe = plt.subplots(1, 1)
 
-axe.plot(l1, p1, 'o-', c='black', label = 'patarn0')
-axe.plot(l2, p2, 's-', c='red', label = 'patarn1')
+axe.plot(l1, p1, 'o-', c='black', label = 'pattern0')
+axe.plot(l2, p2, 's-', c='red', label = 'pattern1')
 plt.xlabel("b_max", fontsize = 18)
 plt.ylabel("Percolatin Probability", fontsize = 18)
 
