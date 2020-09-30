@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = np.loadtxt('dis_90.dat')
+data = np.loadtxt('dis0_N8_90.dat')
 
 x1 = data[:,0]
 x2 = data[:,1]
@@ -19,5 +19,5 @@ axe.axes.xaxis.set_ticks([])
 axe.axes.yaxis.set_ticks([])
 axe.set_aspect('equal')
 
-fig.savefig("dis_90.png")
+fig.savefig("dis0_N8_90.png")
 #plt.show()
