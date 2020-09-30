@@ -6,9 +6,9 @@
 #include<string>
 #include<fstream>
 
-#define N_max 300
+#define N 160
 //#define L 8e-1
-#define b_max M_PI/18
+#define b_max M_PI/2
 
 
 typedef struct{
@@ -31,7 +31,7 @@ int cmp(const void *a, const void *b){
  else return 0;
 }
 
-int show(S_DIS mat[N_max], int col, int row){
+int show(S_DIS mat[N], int col, int row){
   int i, j;
   for(i=0;i<col;i++){
     printf("%2.2f\t%2.2f\t%2.2f\t%2.2f\t%d",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect);
@@ -41,7 +41,7 @@ printf("\n");
 return 0;
 }
 
-int intersection(S_DIS mat[N_max], int i, int j)
+int intersection(S_DIS mat[N], int i, int j)
 {
   if(mat[i].x1 >= mat[i].x2){
   	if((mat[i].x1 < mat[j].x1 && mat[i].x2 < mat[j].x2) || (mat[i].x2 > mat[j].x1 && mat[i].x2 > mat[j].x2)){
@@ -81,8 +81,8 @@ int main(void){
 
   srand((unsigned)time(NULL));
 
-  int N;
-  S_DIS mat[N_max];
+ // int N;
+  S_DIS mat[N];
   int col = N;
   int row = 5;
   double b;
@@ -96,14 +96,14 @@ int main(void){
 //  L = 1e-1;
 
   FILE* fp0;
-  fp0 = fopen("dis0_N160_10.dat", "w");
+  fp0 = fopen("dis1_N160_90.dat", "w");
   if(fp0==NULL){
 	  printf("File open faild");
   }
 
-  N = 160;
+//  N = 160;
   
- 	 for(int i = 0; i < N/8; i++){
+ 	 for(int i = 0; i < 60; i++){
 		
 		double L = 0.1;
     		mat[i].conect = 0;
@@ -117,7 +117,7 @@ int main(void){
 
   	}
 
- 	 for(int i = N/8; i < N/4; i++){
+ 	 for(int i = 60; i < 100; i++){
 		
 		double L = 0.2;
     		mat[i].conect = 0;
@@ -131,7 +131,7 @@ int main(void){
 
   	}
 	
- 	 for(int i = N/4; i < N*3/8; i++){
+ 	 for(int i = 100; i < 120; i++){
 		
 		double L = 0.3;
     		mat[i].conect = 0;
@@ -145,7 +145,7 @@ int main(void){
 
   	}
 
- 	 for(int i = N*3/8; i < N/2; i++){
+ 	 for(int i = 120; i < 140; i++){
 		
 		double L = 0.4;
     		mat[i].conect = 0;
@@ -159,7 +159,7 @@ int main(void){
 
   	}
 
- 	 for(int i = N/2; i < N*5/8; i++){
+ 	 for(int i = 140; i < 150; i++){
 		
 		double L = 0.5;
     		mat[i].conect = 0;
@@ -173,7 +173,7 @@ int main(void){
 
   	}
 
- 	 for(int i = N*5/8; i < N*3/4; i++){
+ 	 for(int i = 150; i < 156; i++){
 		
 		double L = 0.6;
     		mat[i].conect = 0;
@@ -187,7 +187,7 @@ int main(void){
 
   	}
 
- 	 for(int i = N*3/4; i < N*7/8; i++){
+ 	 for(int i = 156; i < 158; i++){
 		
 		double L = 0.7;
     		mat[i].conect = 0;
@@ -201,7 +201,7 @@ int main(void){
 
   	}
 
- 	 for(int i = N*7/8; i < N; i++){
+ 	 for(int i = 158; i < N; i++){
 		
 		double L = 0.8;
     		mat[i].conect = 0;
