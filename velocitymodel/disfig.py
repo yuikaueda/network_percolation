@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.collections as mc
-data = np.loadtxt('test00.dat')
+data = np.loadtxt('test.dat')
 
 x1 = data[:,0]
 x2 = data[:,1]
@@ -24,5 +24,5 @@ axe.axes.xaxis.set_ticks([])
 axe.axes.yaxis.set_ticks([])
 axe.set_aspect('equal')
 
-fig.savefig("test00.png")
+fig.savefig("test.png")
 #plt.show()
