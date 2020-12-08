@@ -261,7 +261,7 @@ int main(void){
   
 
   FILE* fp0;
-  fp0 = fopen("pN1_N8_90.dat", "w");
+  fp0 = fopen("testdis_10.dat", "w");
   if(fp0==NULL){
 	  printf("File open faild");
   }

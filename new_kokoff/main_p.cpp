@@ -12,8 +12,8 @@
 #define RAN 100
 #define t_max 100
 #define step 100
-#define k_on 0.3
-#define k_off 0.7
+#define k_on 0.9
+#define k_off 0.1
 
 
 double Uniform(){
@@ -87,7 +87,7 @@ int main(void){
 
 
   FILE* fp0;
-  fp0 = fopen("petern_ab03.dat" , "w");
+  fp0 = fopen("kon09_koff01.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -166,6 +166,14 @@ int main(void){
 			*/
   			//qsort(mat, col, sizeof(mat[0]), cmp);
 			
+			for(int i = 0; i < 10; i++){
+				mat[i].conect_b = 0;
+			}
+
+			for(int i = 10; i < 20; i++){
+				mat[i].conect_a = 0;
+			}
+
 			for(int i = 20; i < N; i++){
 				mat[i].conect_a = 0;
 				mat[i].conect_b = 0;
@@ -210,7 +218,6 @@ int main(void){
   		}
 */
   		for(int i = 20; i < N; i++){
-			
 			if(mat[i].conect_a == 1 || mat[i].conect_b == 1){
 				double value = Uniform();
 				//printf("%f\n",value);
@@ -222,7 +229,6 @@ int main(void){
     
     					mat[i].x2 = mat[i].x1 + L*sin(b);
     					mat[i].y2 = mat[i].y1 + L*cos(b);
-			
 				}
 			}else{
 				mat[i].x1 = (double)rand()/RAND_MAX;

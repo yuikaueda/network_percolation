@@ -9,12 +9,12 @@
 #define N 150
 #define L 2e-1
 #define b_max M_PI/2
-#define RAN 100
-#define t_max 100
-#define step 100
-#define k_on 0.3
-#define k_off 0.7
-
+#define RAN 10
+#define t_max 1
+#define step 1
+#define k0_on 0.35
+#define k_off 0.2
+#define f 1e-3
 
 double Uniform(){
 	return ((double)rand()+1.0)/((double)RAND_MAX+2.0);
@@ -84,10 +84,12 @@ int main(void){
   double p_a;
   double p_b;
   int check[N];
-
+  int N_a;
+  int N_b;
+  double k_on;
 
   FILE* fp0;
-  fp0 = fopen("petern_ab03.dat" , "w");
+  fp0 = fopen("disfig.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -166,6 +168,14 @@ int main(void){
 			*/
   			//qsort(mat, col, sizeof(mat[0]), cmp);
 			
+			for(int i = 0; i < 10; i++){
+				mat[i].conect_b = 0;
+			}
+
+			for(int i = 10; i < 20; i++){
+				mat[i].conect_a = 0;
+			}
+
 			for(int i = 20; i < N; i++){
 				mat[i].conect_a = 0;
 				mat[i].conect_b = 0;
@@ -209,12 +219,50 @@ int main(void){
 			}	
   		}
 */
+		N_a = 0;
+		N_b = 0;
+		for(int i = 0; i < N; i++){
+			if(mat[i].conect_a == 1){
+				N_a += 1;
+			}
+			if(mat[i].conect_b == 1){
+				N_b += 1;
+			}
+		}
+		//printf("N_a=%d\tN_b=%d\n",N_a,N_b);
+
+
   		for(int i = 20; i < N; i++){
-			
-			if(mat[i].conect_a == 1 || mat[i].conect_b == 1){
+			if(mat[i].conect_a == 1){
 				double value = Uniform();
 				//printf("%f\n",value);
+				k_on = k0_on*exp(f*N_a);
+				//printf("ka_on=%f\n",k_on);
 				if(value < k_off / (k_on + k_off)){
+					mat[i].x1 = (double)rand()/RAND_MAX;
+					mat[i].y1 = (double)rand()/RAND_MAX;
+    
+    					b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
+    
+    					mat[i].x2 = mat[i].x1 + L*sin(b);
+    					mat[i].y2 = mat[i].y1 + L*cos(b);
+				}
+			}else{
+				if(mat[i].conect_b ==1){			
+					double value = Uniform();
+					//printf("%f\n",value);
+					k_on = k0_on*exp(f*N_b);
+					//printf("kb_on=%f\n",k_on);
+					if(value < k_off / (k_on + k_off)){
+						mat[i].x1 = (double)rand()/RAND_MAX;
+						mat[i].y1 = (double)rand()/RAND_MAX;
+    
+    						b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
+    
+    						mat[i].x2 = mat[i].x1 + L*sin(b);
+    						mat[i].y2 = mat[i].y1 + L*cos(b);
+					}
+				}else{
 					mat[i].x1 = (double)rand()/RAND_MAX;
 					mat[i].y1 = (double)rand()/RAND_MAX;
     
@@ -224,16 +272,7 @@ int main(void){
     					mat[i].y2 = mat[i].y1 + L*cos(b);
 			
 				}
-			}else{
-				mat[i].x1 = (double)rand()/RAND_MAX;
-				mat[i].y1 = (double)rand()/RAND_MAX;
-    
-    				b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
-    
-    				mat[i].x2 = mat[i].x1 + L*sin(b);
-    				mat[i].y2 = mat[i].y1 + L*cos(b);
 			}
-			
 			/*
 			mat[i].conect = 0;
 			check[i] == 0;
@@ -277,15 +316,16 @@ int main(void){
 			*/
 		}
   	}
-/*
+  
+
   	for(int i = 0; i < N; i++){
-  	fprintf(fp0, "%f\t%f\t%f\t%f\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect);
+  	fprintf(fp0, "%f\t%f\t%f\t%f\t%d\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect_a,mat[i].conect_b);
   	//printf("%f\t%f\t%f\t%f\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect);
   	}
-*/
+
   }
 
-
+/*
   for(int i = 0; i < t_max; i++){
 	  p_a = (double)P_a[i]/(double)step;
 	  //p_b = (double)P_b[i]/(double)step;
@@ -295,7 +335,7 @@ int main(void){
 	  fprintf(fp0, "%d\t%f\n",i,p_a);
 	  printf("t=%d\tP_a=%f\n",i,p_a);
   }
-
+*/
   fclose(fp0);
   return 0;
 
