@@ -9,12 +9,13 @@
 #define N 150
 #define L 2e-1
 #define b_max M_PI/2
-#define RAN 10
+#define RAN 100
 #define t_max 100
 #define step 1
 #define k0_on 0.35
 #define k_off 0.2
-#define f 1e-3
+#define f 5e-3
+#define k_FA 50
 
 double Uniform(){
 	return ((double)rand()+1.0)/((double)RAND_MAX+2.0);
@@ -89,7 +90,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("disfig100.dat" , "w");
+  fp0 = fopen("onestep_kfa_50.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -230,7 +231,25 @@ int main(void){
 			}
 		}
 		//printf("N_a=%d\tN_b=%d\n",N_a,N_b);
+		
 
+		double value = Uniform();
+		//printf ("value = %f\n",value);
+		if(value < 1.0 / (1.0 + k_FA)){
+			double x2_b = (double)rand()/RAND_MAX;
+			//printf("%f\n",value);
+			for(int i = 10; i < 20; i++){
+	      			mat[i].conect_a = 0;
+	      			mat[i].conect_b = 1;
+	      			mat[i].y2 = 1;
+				mat[i].x2 = x2_b;
+
+    	      			b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
+    
+    	      			mat[i].x1 = mat[i].x2 + L*sin(b);
+    	      			mat[i].y1 = mat[i].y2 - L*cos(b);
+			}
+		}
 
   		for(int i = 20; i < N; i++){
 			if(mat[i].conect_a == 1){
@@ -243,7 +262,7 @@ int main(void){
 					mat[i].y1 = (double)rand()/RAND_MAX;
     
     					b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
-    
+
     					mat[i].x2 = mat[i].x1 + L*sin(b);
     					mat[i].y2 = mat[i].y1 + L*cos(b);
 				}
@@ -273,59 +292,17 @@ int main(void){
 			
 				}
 			}
-			/*
-			mat[i].conect = 0;
-			check[i] == 0;
-			for(int j = 0; j < N; j++){
-				if(i != j){
-					 check[i] = intersection(mat, i, j);
-						if(check[i] == 1){
-							break;	
-						}
-				}
-			}
-			if(check[i] == 0){
-
-					mat[i].x1 = (double)rand()/RAND_MAX;
-					mat[i].y1 = (double)rand()/RAND_MAX;
-    
-    					b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
-    
-    					mat[i].x2 = mat[i].x1 + L*sin(b);
-    					mat[i].y2 = mat[i].y1 + L*cos(b);
-                                	//printf("%f\t%f\t%f\t%f\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect);
-			}
-
-			if(check[i] == 1){
-
-					double value = Uniform();
-					//printf("%f\n",value);
-					if(value < k_off / (k_on + k_off)){
-						mat[i].x1 = (double)rand()/RAND_MAX;
-						mat[i].y1 = (double)rand()/RAND_MAX;
-    
-    						b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
-    
-    						mat[i].x2 = mat[i].x1 + L*sin(b);
-    						mat[i].y2 = mat[i].y1 + L*cos(b);
-						break;
-				  	}
-	        
-				// fprintf(fp0, "%f\t%f\t%f\t%f\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect);
-			}
-			*/
 		}
   	}
-  
-
+/*
   	for(int i = 0; i < N; i++){
-  	fprintf(fp0, "%f\t%f\t%f\t%f\t%d\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect_a,mat[i].conect_b);
+  	fprintf(fp0, "%f\t%f\t%f\t%f\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect);
   	//printf("%f\t%f\t%f\t%f\t%d\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2,mat[i].conect);
   	}
-
+*/
   }
 
-/*
+
   for(int i = 0; i < t_max; i++){
 	  p_a = (double)P_a[i]/(double)step;
 	  //p_b = (double)P_b[i]/(double)step;
@@ -335,7 +312,7 @@ int main(void){
 	  fprintf(fp0, "%d\t%f\n",i,p_a);
 	  printf("t=%d\tP_a=%f\n",i,p_a);
   }
-*/
+
   fclose(fp0);
   return 0;
 
