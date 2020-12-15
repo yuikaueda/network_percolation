@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 data1 = np.loadtxt('change_kcon_20_s.dat')
-data2 = np.loadtxt('change_kcon_20_l.dat')
+data2 = np.loadtxt('change_kcon_20_l_2.dat')
 #data3 = np.loadtxt('kcon_10.dat')
 #data4 = np.loadtxt('kcon_20.dat')
 
@@ -30,5 +30,5 @@ plt.ylim(0, 1)
 #plt.xlim(0, 30)
 
 axe.legend(loc='lower right')
-fig.savefig("cha_p_time_kcon_length.png")
+fig.savefig("change_p_time_kcon_l_2.png")
 #plt.show()

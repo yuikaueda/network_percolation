@@ -90,7 +90,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("kcon_20_l_2.dat" , "w");
+  fp0 = fopen("change_kcon_20_l_2.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -233,6 +233,22 @@ int main(void){
 		}
 		//printf("N_a=%d\tN_b=%d\n",N_a,N_b);
 */
+
+		if(t_run == 49 ){
+			for(int i = 20; i < N; i++){
+				k_on = k0_on;
+				double value = Uniform();	
+				if(value < k_off / (k_on + k_off)){
+					mat[i].x1 = (double)rand()/RAND_MAX;
+					mat[i].y1 = (double)rand()/RAND_MAX;
+    
+    					b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
+    
+    					mat[i].x2 = mat[i].x1 + L*sin(b);
+    					mat[i].y2 = mat[i].y1 + L*cos(b);
+				}
+			}
+		}else{
 			for(int i = 20; i < N; i++){
 				if (mat[i].conect_a == 1 && mat[i].conect_b == 1){
 					k_on = kc_on;
@@ -260,6 +276,7 @@ int main(void){
 					}
 				}
 			}
+		}
   	}
 /*
   	for(int i = 0; i < N; i++){
