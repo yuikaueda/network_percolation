@@ -11,9 +11,9 @@
 #define b_max M_PI/2
 #define RAN 100
 #define t_max 100
-#define step 1000
+#define step 100
 #define k0_on 0.35
-#define kc_on 20.0
+#define kc_on 10.0
 #define k_off 0.2
 #define f 1e-3
 
@@ -87,10 +87,12 @@ int main(void){
   int check[N];
   int N_a;
   int N_b;
+  double N_c[t_max];
+  double n_c;
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("kcon_20_l_2.dat" , "w");
+  fp0 = fopen("kcon_10_num_s.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -98,7 +100,7 @@ int main(void){
   
   for(int i=0; i<t_max; i++){
 		  	P_a[i] = 0;
-			P_b[i] = 0;
+			  P_b[i] = 0;
   }
 
 
@@ -120,7 +122,7 @@ int main(void){
 	for(int i = 10; i < 20; i++){
 	      mat[i].conect_a = 0;
 	      mat[i].conect_b = 1;
-      	      mat[i].x2 = 0.2;
+      	      mat[i].x2 = 0.5;
 	      mat[i].y2 = 1;
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
@@ -142,10 +144,10 @@ int main(void){
 */
   	for(int i = 20; i < N; i++){
 
-   	    	mat[i].conect_a = 0;
-		mat[i].conect_b = 0;
-		mat[i].x1 = (double)rand()/RAND_MAX;
-		mat[i].y1 = (double)rand()/RAND_MAX;
+   	    mat[i].conect_a = 0;
+		    mat[i].conect_b = 0;
+		    mat[i].x1 = (double)rand()/RAND_MAX;
+		    mat[i].y1 = (double)rand()/RAND_MAX;
     
     		b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
     
@@ -220,6 +222,11 @@ int main(void){
 			}	
   		}
 */
+      for(int i = 0; i < N; i++){
+        if(mat[i].conect_a == 1 && mat[i].conect_b == 1){
+          N_c[t_run] += 1;
+        }
+      }
 /*
 		N_a = 0;
 		N_b = 0;
@@ -272,12 +279,13 @@ int main(void){
 
   for(int i = 0; i < t_max; i++){
 	  p_a = (double)P_a[i]/(double)step;
+    n_c = (double)N_c[i]/(double)step;
 	  //p_b = (double)P_b[i]/(double)step;
 	  //fprintf(fp0, "%d\t%f\t%f\n",i,p_a,p_b);
 	  //printf("t=%d\tP_a=%f\tP_b=%f\n",i,p_a,p_b);
 
-	  fprintf(fp0, "%d\t%f\n",i,p_a);
-	  printf("t=%d\tP_a=%f\n",i,p_a);
+	  fprintf(fp0, "%d\t%f\t%f\n",i,p_a,n_c);
+	  printf("t=%d\tP_a=%f\tn=%f\n",i,p_a,n_c);
   }
 
   fclose(fp0);

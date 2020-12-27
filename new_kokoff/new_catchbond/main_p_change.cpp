@@ -6,12 +6,12 @@
 #include<string>
 #include<fstream>
 
-#define N 150
-#define L 2e-1
+#define N 75
+#define L 4e-1
 #define b_max M_PI/2
 #define RAN 100
 #define t_max 100
-#define step 1000
+#define step 100
 #define k0_on 0.35
 #define kc_on 20.0
 #define k_off 0.2
@@ -90,7 +90,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("change_kcon_20_l_2.dat" , "w");
+  fp0 = fopen("change_kcon_20_300_4.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -120,7 +120,7 @@ int main(void){
 	for(int i = 10; i < 20; i++){
 	      mat[i].conect_a = 0;
 	      mat[i].conect_b = 1;
-      	      mat[i].x2 = 0.2;
+      	mat[i].x2 = 0.5;
 	      mat[i].y2 = 1;
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
