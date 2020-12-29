@@ -13,7 +13,7 @@
 #define t_max 100
 #define step 100
 #define k0_on 0.35
-#define kc_on 10.0
+#define kc_on 17.5
 #define k_off 0.2
 #define f 1e-3
 
@@ -92,7 +92,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("kcon_10_num_s.dat" , "w");
+  fp0 = fopen("kcon_kcon_50.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }

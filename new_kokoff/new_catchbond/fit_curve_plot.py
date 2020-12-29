@@ -3,11 +3,11 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-data1 = np.loadtxt('kcon_20.dat')
-data2 = np.loadtxt('kcon_20.dat')
-data3 = np.loadtxt('kcon_20.dat')
-data4 = np.loadtxt('kcon_20.dat')
-data5 = np.loadtxt('kcon_20.dat')
+data1 = np.loadtxt('kcon_kcon_2.dat')
+data2 = np.loadtxt('kcon_kcon_8.dat')
+data3 = np.loadtxt('kcon_kcon_14.dat')
+data4 = np.loadtxt('kcon_kcon_20.dat')
+data5 = np.loadtxt('kcon_kcon_26.dat')
 
 def fit(x,K,T):
     return K*(1-np.exp(-x/T))
