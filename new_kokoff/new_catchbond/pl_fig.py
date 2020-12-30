@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 #data1 = np.loadtxt('change_kcon_20_300_2.dat')
 #data2 = np.loadtxt('change_kcon_20_300_2.dat')
-data3 = np.loadtxt('kcon_10_num_s.dat')
-data4 = np.loadtxt('kcon_10_num_l.dat')
+data3 = np.loadtxt('kcon_kcon_28.dat')
+data4 = np.loadtxt('kcon_kcon_50.dat')
 
 #l1 = data1[:,0]
 #p1 = data1[:,1]
@@ -31,5 +31,5 @@ plt.ylabel("number", fontsize = 18)
 #plt.xlim(0, 30)
 
 axe.legend(loc='lower right')
-fig.savefig("num_time_kcon_10.png")
+fig.savefig("test.png")
 #plt.show()
