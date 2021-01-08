@@ -6,14 +6,14 @@
 #include<string>
 #include<fstream>
 
-#define N 150
+#define N 100
 #define L 2e-1
 #define b_max M_PI/2
 #define RAN 100
 #define t_max 100
 #define step 100
 #define k0_on 0.35
-#define kc_on 17.5
+#define kc_on 20
 #define k_off 0.2
 #define f 1e-3
 
@@ -92,7 +92,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("kcon_kcon_50.dat" , "w");
+  fp0 = fopen("kcon_20_ss_100.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -109,7 +109,7 @@ int main(void){
 	for(int i = 0; i < 10; i++){
 	      mat[i].conect_a = 1;
 	      mat[i].conect_b = 0;
-      	      mat[i].x1 = 0.5;
+      	mat[i].x1 = 0.5;
 	      mat[i].y1 = 0;
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
@@ -118,22 +118,23 @@ int main(void){
     	      mat[i].y2 = mat[i].y1 + L*cos(b);
         }
 
-
+/*
 	for(int i = 10; i < 20; i++){
 	      mat[i].conect_a = 0;
 	      mat[i].conect_b = 1;
-      	      mat[i].x2 = 0.5;
-	      mat[i].y2 = 1;
+      	mat[i].x2 = 1;
+	      mat[i].y2 = 0.3;
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
     
     	      mat[i].x1 = mat[i].x2 + L*sin(b);
     	      mat[i].y1 = mat[i].y2 - L*cos(b);
         }
-/*
-	for(int i = 20; i < 30; i++){
-	      mat[i].conect = 0;
-      	      mat[i].x1 = 1;
+*/
+	for(int i = 10; i < 20; i++){
+	      mat[i].conect_a = 0;
+        mat[i].conect_b = 1;
+      	mat[i].x1 = 1;
 	      mat[i].y1 = 0.3;
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
@@ -141,7 +142,7 @@ int main(void){
     	      mat[i].x2 = mat[i].x1 - L*cos(b);
     	      mat[i].y2 = mat[i].y1 + L*sin(b);
         }
-*/
+
   	for(int i = 20; i < N; i++){
 
    	    mat[i].conect_a = 0;
