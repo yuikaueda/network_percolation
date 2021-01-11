@@ -8,6 +8,7 @@
 
 #define N 150
 #define L 2e-1
+#define L0 1e-1
 #define b_max M_PI/2
 #define RAN 100
 #define t_max 100
@@ -16,6 +17,8 @@
 #define kc_on 20.0
 #define k_off 0.2
 #define f 1e-3
+#define n1 10
+#define n2 20
 
 double Uniform(){
 	return ((double)rand()+1.0)/((double)RAND_MAX+2.0);
@@ -28,8 +31,9 @@ typedef struct{
   double x2;
   double y1;
   double y2;
-  int    conect_a;
+  int  conect_a;
   int	 conect_b;
+
 }S_DIS;
 
 int cmp(const void *a, const void *b){
@@ -90,21 +94,21 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("change_kcon_20_090_l_150.dat" , "w");
+  fp0 = fopen("s_change_kcon_20_090_l_120.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
 
   
   for(int i=0; i<t_max; i++){
-		  	P_a[i] = 0;
+		  P_a[i] = 0;
 			P_b[i] = 0;
   }
 
 
   for(int step_n = 0; step_n < step; step_n++){
 
-	for(int i = 0; i < 10; i++){
+	for(int i = 0; i < n1; i++){
 	      mat[i].conect_a = 1;
 	      mat[i].conect_b = 0;
       	      mat[i].x1 = 0.5;
@@ -112,8 +116,8 @@ int main(void){
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
     
-    	      mat[i].x2 = mat[i].x1 + L*sin(b);
-    	      mat[i].y2 = mat[i].y1 + L*cos(b);
+    	      mat[i].x2 = mat[i].x1 + L0*sin(b);
+    	      mat[i].y2 = mat[i].y1 + L0*cos(b);
         }
 
 
@@ -125,12 +129,13 @@ int main(void){
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
     
-    	      mat[i].x1 = mat[i].x2 + L*sin(b);
-    	      mat[i].y1 = mat[i].y2 - L*cos(b);
+    	      mat[i].x1 = mat[i].x2 + L0*sin(b);
+    	      mat[i].y1 = mat[i].y2 - L0*cos(b);
         }
+
 /*
 
-	for(int i = 10; i < 20; i++){
+	for(int i = n1; i < n2; i++){
 	      mat[i].conect_a = 0;
         mat[i].conect_b = 1;
       	mat[i].x1 = 1;
@@ -138,11 +143,11 @@ int main(void){
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
     
-    	      mat[i].x2 = mat[i].x1 - L*cos(b);
-    	      mat[i].y2 = mat[i].y1 + L*sin(b);
+    	      mat[i].x2 = mat[i].x1 - L0*cos(b);
+    	      mat[i].y2 = mat[i].y1 + L0*sin(b);
         }
 */
-  	for(int i = 20; i < N; i++){
+  	for(int i = n2; i < N; i++){
 
    	    	mat[i].conect_a = 0;
 		      mat[i].conect_b = 0;
@@ -171,15 +176,15 @@ int main(void){
 			*/
   			//qsort(mat, col, sizeof(mat[0]), cmp);
 			
-			for(int i = 0; i < 10; i++){
+			for(int i = 0; i < n1; i++){
 				mat[i].conect_b = 0;
 			}
 
-			for(int i = 10; i < 20; i++){
+			for(int i = n1; i < n2; i++){
 				mat[i].conect_a = 0;
 			}
 
-			for(int i = 20; i < N; i++){
+			for(int i = n2; i < N; i++){
 				mat[i].conect_a = 0;
 				mat[i].conect_b = 0;
 			}
@@ -208,7 +213,7 @@ int main(void){
   			}
   			//show(mat, col, row);
 
-  		for(int i = 10; i < 20; i++){
+  		for(int i = n1; i < n2; i++){
 	  		if(mat[i].conect_a == 1){
 	  	  		P_a[t_run] += 1;
 				break;	
@@ -237,7 +242,7 @@ int main(void){
 */
 
 		if(t_run == 79 ){
-			for(int i = 20; i < N; i++){
+			for(int i = n2; i < N; i++){
 				k_on = k0_on;
 				double value = Uniform();	
 				if(value < k_off / (k_on + k_off)){
@@ -251,7 +256,7 @@ int main(void){
 				}
 			}
 		}else{
-			for(int i = 20; i < N; i++){
+			for(int i = n2; i < N; i++){
 				if (mat[i].conect_a == 1 && mat[i].conect_b == 1){
 					k_on = kc_on;
 					double value = Uniform();
