@@ -11,9 +11,9 @@
 #define b_max M_PI/2
 #define RAN 100
 #define t_max 100
-#define step 100
+#define step 1
 #define k0_on 0.35
-#define kc_on 20
+#define kc_on 5
 #define k_off 0.2
 #define f 1e-3
 
@@ -92,7 +92,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("kcon_20_ll_150.dat" , "w");
+  fp0 = fopen("step1_kcon_5_ll_150.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }

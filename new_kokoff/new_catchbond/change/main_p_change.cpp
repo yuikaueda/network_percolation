@@ -8,12 +8,12 @@
 
 #define N 150
 #define L 2e-1
-#define L0 1e-1
+#define L0 2e-1
 #define b_max M_PI/2
 #define RAN 100
 #define t_max 100
 #define step 100
-#define k0_on 0.90
+#define k0_on 0.30
 #define kc_on 20.0
 #define k_off 0.2
 #define f 1e-3
@@ -94,7 +94,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("s_change_kcon_20_090_l_120.dat" , "w");
+  fp0 = fopen("s_change_kcon_20_030_ss_150.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -120,7 +120,7 @@ int main(void){
     	      mat[i].y2 = mat[i].y1 + L0*cos(b);
         }
 
-
+/*
 	for(int i = 10; i < 20; i++){
 	      mat[i].conect_a = 0;
 	      mat[i].conect_b = 1;
@@ -132,8 +132,8 @@ int main(void){
     	      mat[i].x1 = mat[i].x2 + L0*sin(b);
     	      mat[i].y1 = mat[i].y2 - L0*cos(b);
         }
+*/
 
-/*
 
 	for(int i = n1; i < n2; i++){
 	      mat[i].conect_a = 0;
@@ -146,7 +146,7 @@ int main(void){
     	      mat[i].x2 = mat[i].x1 - L0*cos(b);
     	      mat[i].y2 = mat[i].y1 + L0*sin(b);
         }
-*/
+
   	for(int i = n2; i < N; i++){
 
    	    	mat[i].conect_a = 0;

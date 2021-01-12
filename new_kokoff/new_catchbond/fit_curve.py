@@ -3,7 +3,7 @@ import numpy as np
 #import seaborn as sns
 import matplotlib.pyplot as plt
 
-data1 = np.loadtxt('kcon_kcon_50.dat')
+data1 = np.loadtxt('kcon_20_num_l.dat')
 
 def fit(x,K,T):
     return K*(1-np.exp(-x/T))
@@ -25,7 +25,7 @@ axe.plot(x1, array_y_fit, '-', c='black', label = r'$P={}(1-exp(-t/{}))$'.format
 plt.xlabel("time", fontsize = 18)
 plt.ylabel("Percolatin Probability", fontsize = 18)
 axe.legend()
-fig.savefig("fit_kcon_50.png")
+fig.savefig("fit_num_kcon_ll.png")
   
 #sns.pointplot(x=x1, y=y1, join=False)
 #sns.pointplot(x=x1, y=array_y_fit, markers="")
