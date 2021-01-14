@@ -6,14 +6,15 @@
 #include<string>
 #include<fstream>
 
-#define N 150
-#define L 2e-1
+#define N 100
+#define L 3e-1
+#define L0 2e-1
 #define b_max M_PI/2
 #define RAN 100
 #define t_max 100
-#define step 1
+#define step 100
 #define k0_on 0.35
-#define kc_on 5
+#define kc_on 20
 #define k_off 0.2
 #define f 1e-3
 
@@ -92,7 +93,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("step1_kcon_5_ll_150.dat" , "w");
+  fp0 = fopen("l0_kcon20_3_100.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -114,8 +115,8 @@ int main(void){
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
     
-    	      mat[i].x2 = mat[i].x1 + L*sin(b);
-    	      mat[i].y2 = mat[i].y1 + L*cos(b);
+    	      mat[i].x2 = mat[i].x1 + L0*sin(b);
+    	      mat[i].y2 = mat[i].y1 + L0*cos(b);
         }
 
 
@@ -127,8 +128,8 @@ int main(void){
               	      
     	      b = b_max*(-1 + 2*((double)rand()/RAND_MAX));
     
-    	      mat[i].x1 = mat[i].x2 + L*sin(b);
-    	      mat[i].y1 = mat[i].y2 - L*cos(b);
+    	      mat[i].x1 = mat[i].x2 + L0*sin(b);
+    	      mat[i].y1 = mat[i].y2 - L0*cos(b);
         }
 /*
 	for(int i = 10; i < 20; i++){
