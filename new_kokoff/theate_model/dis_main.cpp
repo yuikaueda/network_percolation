@@ -18,9 +18,9 @@
 #define kc_on 20
 #define k0_off 0.2
 #define f 1e-3
-#define N_best 80
-#define A 0.001
-#define B 10
+#define N_best 200
+#define A 0.01
+#define B 5
 
 double Uniform(){
 	return ((double)rand()+1.0)/((double)RAND_MAX+2.0);
@@ -103,12 +103,13 @@ int main(void){
   double k_off;
   double th_cos[N];
 
+/*  
   FILE* fp0;
   fp0 = fopen("long_n80_a0001_b10.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
-
+*/
   
   for(int i=0; i<t_max; i++){
 		  	P_a[i] = 0;
@@ -199,7 +200,7 @@ int main(void){
       if(t_run%50 == 0){
         std::ofstream fp;
         std::string filename;
-        filename = "dis_n80a0001b10_"+std::to_string(t_run)+".dat";
+        filename = "dis_n200a001b5_"+std::to_string(t_run)+".dat";
         fp.open(filename, std::ios::out);
         
         for(int i=0; i<N; i++){
@@ -384,7 +385,7 @@ int main(void){
   }
 */
 
-  
+/*  
   for(int i = 0; i < t_max; i++){
     double Ncc = 0;
     double Nc = 0;
@@ -404,6 +405,7 @@ int main(void){
   }
 
   fclose(fp0);
+*/  
   return 0;
 
 }

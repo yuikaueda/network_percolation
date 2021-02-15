@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.collections as mc
-data = np.loadtxt('dis_n80a0001b10_50.dat')
+data = np.loadtxt('dis_n150a001b5_100.dat')
 
 x1 = data[:,0]
 x2 = data[:,1]
@@ -24,5 +24,5 @@ axe.axes.xaxis.set_ticks([])
 axe.axes.yaxis.set_ticks([])
 axe.set_aspect('equal')
 
-fig.savefig("n80a0001b10_50.png")
+fig.savefig("dis_n150a001b5_100.png")
 #plt.show()
