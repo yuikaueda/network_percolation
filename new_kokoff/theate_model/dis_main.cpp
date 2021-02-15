@@ -385,7 +385,7 @@ int main(void){
   }
 */
 
-/*  
+  
   for(int i = 0; i < t_max; i++){
     double Ncc = 0;
     double Nc = 0;
@@ -400,12 +400,12 @@ int main(void){
 	  //fprintf(fp0, "%d\t%f\t%f\n",i,p_a,p_b);
 	  //printf("t=%d\tP_a=%f\tP_b=%f\n",i,p_a,p_b);
 
-	  fprintf(fp0, "%d\t%f\t%f\t%f\n",i,p_a,n_c,n_cc);
+	 // fprintf(fp0, "%d\t%f\t%f\t%f\n",i,p_a,n_c,n_cc);
 	  printf("t=%d\tP_a=%f\tnc=%f\tncc=%f\n",i,p_a,n_c,n_cc);
   }
 
-  fclose(fp0);
-*/  
+ // fclose(fp0);
+  
   return 0;
 
 }
