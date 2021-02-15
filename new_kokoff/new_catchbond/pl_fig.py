@@ -24,10 +24,10 @@ p4 = data4[:,1]
 
 fig, axe = plt.subplots(1, 1)
 
-axe.plot(l1, p1, 'o-', c='black', label = r'$1times300$')#'$k_{on}^{c}=2,k_{off}=0.2$')
-axe.plot(l2, p2, 's-', c='red', label = r'$2times150$')#'$k_{on}^{c}=5,k_{off}=0.2$')
-axe.plot(l3, p3, 'v-', c='blue', label = r'$3times100$')#'$k_{on}^{c}=10,k_{off}=0.2$')
-axe.plot(l4, p4, 'p-',  c='green', label =r'$4times75$')#'$k_{on}^{c}=20,k_{off}=0.2$')
+axe.plot(l1, p1, 'o-', c='black', label = r'$1\times300$')#'$k_{on}^{c}=2,k_{off}=0.2$')
+axe.plot(l2, p2, 's-', c='red', label = r'$2\times150$')#'$k_{on}^{c}=5,k_{off}=0.2$')
+axe.plot(l3, p3, 'v-', c='blue', label = r'$3\times100$')#'$k_{on}^{c}=10,k_{off}=0.2$')
+axe.plot(l4, p4, 'p-',  c='green', label =r'$4\times75$')#'$k_{on}^{c}=20,k_{off}=0.2$')
 #axe.plot(l5, p5, '^-',  c='yellow', label =r'$k_{on}^{c}/{k_{on}^{0}}=40$')#'$k_{on}^{c}=20,k_{off}=0.2$')
 
 plt.xlabel("time", fontsize = 18)
@@ -36,6 +36,6 @@ plt.ylabel("Percolatin Probability", fontsize = 18)
 #plt.ylim(0, 1.1)
 #plt.xlim(0, 30)
 
-#axe.legend(loc='lower right')
+axe.legend(loc='best')
 fig.savefig("l0_length_pp.png")
 #plt.show()

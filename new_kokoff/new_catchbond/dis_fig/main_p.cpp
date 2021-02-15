@@ -6,12 +6,12 @@
 #include<string>
 #include<fstream>
 
-#define N 100
+#define N 150
 #define L 2e-1
 #define L0 2e-1
 #define b_max M_PI/2
 #define RAN 100
-#define t_max 100
+#define t_max 1
 #define step 1
 #define k0_on 0.35
 #define kc_on 20
@@ -93,7 +93,7 @@ int main(void){
   double k_on;
 
   FILE* fp0;
-  fp0 = fopen("test.dat" , "w");
+  fp0 = fopen("dis20_t100_2_150_short.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -119,7 +119,7 @@ int main(void){
     	      mat[i].y2 = mat[i].y1 + L0*cos(b);
         }
 
-
+/*
 	for(int i = 10; i < 20; i++){
 	      mat[i].conect_a = 0;
 	      mat[i].conect_b = 1;
@@ -131,7 +131,8 @@ int main(void){
     	      mat[i].x1 = mat[i].x2 + L0*sin(b);
     	      mat[i].y1 = mat[i].y2 - L0*cos(b);
         }
-/*
+*/
+
 	for(int i = 10; i < 20; i++){
 	      mat[i].conect_a = 0;
         mat[i].conect_b = 1;
@@ -143,7 +144,7 @@ int main(void){
     	  mat[i].x2 = mat[i].x1 - L*cos(b);
     	  mat[i].y2 = mat[i].y1 + L*sin(b); 
    }
-*/
+
   	for(int i = 20; i < N; i++){
 
    	    mat[i].conect_a = 0;
@@ -279,14 +280,14 @@ int main(void){
   }
 
 
-  for(int i = 0; i < t_max; i++){
+  for(int i = 0; i < N; i++){
 	  p_a = (double)P_a[i]/(double)step;
     n_c = (double)N_c[i]/(double)step;
 	  //p_b = (double)P_b[i]/(double)step;
 	  //fprintf(fp0, "%d\t%f\t%f\n",i,p_a,p_b);
 	  //printf("t=%d\tP_a=%f\tP_b=%f\n",i,p_a,p_b);
 
-	  fprintf(fp0, "%d\t%f\t%f\n",i,p_a,n_c);
+	  fprintf(fp0, "%f\t%f\t%f\t%f\n",mat[i].x1,mat[i].x2,mat[i].y1,mat[i].y2);
 	  printf("t=%d\tP_a=%f\tn=%f\n",i,p_a,n_c);
   }
 

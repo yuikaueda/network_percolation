@@ -17,8 +17,8 @@ data11 = np.loadtxt('kcon_kcon_42.dat')
 data12 = np.loadtxt('kcon_kcon_46.dat')
 data13 = np.loadtxt('kcon_kcon_50.dat')
 
-def fit(x,K,T):
-    return K*(1-np.exp(-x/T))
+def fit(x,K,T,T0):
+    return K*(1-np.exp(-x/T))+T0
 
 x1 = data1[:,0]
 y1 = data1[:,1]
@@ -90,7 +90,7 @@ axe.plot(x, y_K, 'o', c='black', label = 'data')#'$k_{on}^{c}=2,k_{off}=    0.2$
 plt.xlabel(r'$k^{c} _{on}/k^{0} _{on}$', fontsize = 18)
 plt.ylabel("parameter T", fontsize = 18)
 #plt.ylim(0,1.1)
-fig.savefig("fit_parameter_1.png")
+fig.savefig("fit_parameter_T.png")
   
 #sns.pointplot(x=x1, y=y1, join=False)
 #sns.pointplot(x=x1, y=array_y_fit, markers="")
