@@ -36,7 +36,7 @@ p2 = data2[:,1]
 
 fig, axe = plt.subplots(1, 1)
 
-axe.plot(l1, p1, 'o-', c='black', label = r'$N_{s}=200$')#'$k_{on}^{c}=2,k_{off}=0.2$')
+axe.plot(l1, p1, 'o-', c='black', label = r'$N_{s}=80$')#'$k_{on}^{c}=2,k_{off}=0.2$')
 axe.plot(l2, p2, 's-', c='red', label = r'$N_{s}=150$')#'$k_{on}^{c}=5,k_{off}=0.2$')
 #axe.plot(l3, p3, 'v-', c='blue', label = r'$N_{s}=150$')#'$k_{on}^{c}=10,k_{off}=0.2$')
 #axe.plot(l4, p4, '-p',  c='green', label =r'$N_{s}=200$')#'$k_{on}^{c}=20,k_{off}=0.2$')
@@ -47,5 +47,5 @@ plt.ylabel("Percokation plobability", fontsize = 18)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
-fig.savefig("chanege_n200_150.png")
+fig.savefig("chanege_n80_150.png")
 #plt.show()
