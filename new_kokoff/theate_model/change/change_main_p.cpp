@@ -12,13 +12,13 @@
 #define b_max M_PI/2
 #define b_min M_PI/6
 #define RAN 100
-#define t_max 100
+#define t_max 200
 #define step 100
 #define k0_on 0.35
 #define kc_on 20
 #define k0_off 0.2
 #define f 1e-3
-#define N_best_i 150
+#define N_best_i 80
 #define N_best_c 200
 #define A 0.01
 #define B 5
@@ -108,7 +108,7 @@ int main(void){
   double N_best;
 
   FILE* fp0;
-  fp0 = fopen("change_n150_200_a001_b5.dat" , "w");
+  fp0 = fopen("tlong_change_n80_200_a001_b5.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -121,6 +121,8 @@ int main(void){
 
 
   for(int step_n = 0; step_n < step; step_n++){
+
+    printf("%d\n",step_n);
 
 	for(int i = 0; i < 10; i++){
 	      mat[i].conect_a = 1;
@@ -187,7 +189,7 @@ int main(void){
 	      // printf("\n");
 
   	for(int t_run = 0; t_run < t_max; t_run++){
-
+      
       //N_c[t_run] = 0;
       //N_cc[t_run] = 0;
   			/*
