@@ -34,10 +34,27 @@ p2 = data2[:,1]
 #l8 = data4[:,0]
 #p8 = data4[:,1]
 
+l1 = np.array(l1)
+p1 = np.array(p1)
+l2 = np.array(l2)
+p2 = np.array(p2)
+
+l1 = l1[l1>59]
+l2 = l2[l2>59]
+
+
+p1_new = []
+p2_new = []
+for i in range(60, 100):
+    p1_i = p1[i] - p1[60]
+    p2_i = p2[i] - p2[60]
+    p1_new.append(p1_i)
+    p2_new.append(p2_i)
+
 fig, axe = plt.subplots(1, 1)
 
-axe.plot(l1, p1, 'o-', c='black', label = r'$N_{s}=200$')#'$k_{on}^{c}=2,k_{off}=0.2$')
-axe.plot(l2, p2, 's-', c='red', label = r'$N_{s}=150$')#'$k_{on}^{c}=5,k_{off}=0.2$')
+axe.plot(l1, p1_new, 'o-', c='black', label = r'$N_{s}=200$')#'$k_{on}^{c}=2,k_{off}=0.2$')
+axe.plot(l2, p2_new, 's-', c='red', label = r'$N_{s}=150$')#'$k_{on}^{c}=5,k_{off}=0.2$')
 #axe.plot(l3, p3, 'v-', c='blue', label = r'$N_{s}=150$')#'$k_{on}^{c}=10,k_{off}=0.2$')
 #axe.plot(l4, p4, '-p',  c='green', label =r'$N_{s}=200$')#'$k_{on}^{c}=20,k_{off}=0.2$')
 plt.xlabel("time", fontsize = 18)
@@ -48,4 +65,4 @@ plt.ylabel("Percolation plobability", fontsize = 18)
 
 axe.legend(loc='best')
 fig.savefig("seiikika_chanege_n80_150.png")
-#plt.show()
+plt.show()
