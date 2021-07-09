@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data1 = np.loadtxt('change_n80_a001_b5.dat')
-data2 = np.loadtxt('change_n150_200_a001_b5.dat')
+data1 = np.loadtxt('change_n200_a001_b5.dat')
+data2 = np.loadtxt('change_n150_80_a001_b5.dat')
 #data3 = np.loadtxt('long_n150_a001_b5.dat')
 #data4 = np.loadtxt('long_n200_a001_b5.dat')
 #data5 = np.loadtxt('change_kcon_20_070_ss_100.dat')
@@ -40,12 +40,12 @@ axe.plot(l1, p1, 'o-', c='black', label = r'$N_{s}=200$')#'$k_{on}^{c}=2,k_{off}
 axe.plot(l2, p2, 's-', c='red', label = r'$N_{s}=150$')#'$k_{on}^{c}=5,k_{off}=0.2$')
 #axe.plot(l3, p3, 'v-', c='blue', label = r'$N_{s}=150$')#'$k_{on}^{c}=10,k_{off}=0.2$')
 #axe.plot(l4, p4, '-p',  c='green', label =r'$N_{s}=200$')#'$k_{on}^{c}=20,k_{off}=0.2$')
-plt.xlabel("time", fontsize = 18)
+plt.xlabel("Time", fontsize = 18)
 #plt.ylabel("Percolatin Probability", fontsize = 18)
 plt.ylabel("Percolation plobability", fontsize = 18)
 #plt.ylim(0, 1.1)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
-fig.savefig("seiikika_chanege_n80_150.png")
+fig.savefig("Time_chanege_n200_150.png")
 #plt.show()

@@ -43,10 +43,10 @@ axe.plot(l3, p3, 'v-', c='blue', markersize=1, label = r'$N_{s}=250$')#'$k_{on}^
 #axe.plot(l5, p5, '-p',  c='yellow', label =r'$N_{s}=250$')#'$k_{on}^{c}=20,k_{off}=0.2$')
 plt.xlabel("Time", fontsize = 18)
 #plt.ylabel("Percolatin Probability", fontsize = 18)
-plt.ylabel("Distribution Probability", fontsize = 18)
+plt.ylabel("Distribution probability", fontsize = 18)
 #plt.ylim(0, 1.1)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
-fig.savefig("dp_t1000_n.png")
+fig.savefig("Time_dp_t1000_n.png")
 plt.show()
