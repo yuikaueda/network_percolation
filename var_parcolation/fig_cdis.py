@@ -6,7 +6,7 @@ import scipy.optimize
 
 df = pd.read_table('ndis_t1000_nbest250.dat')
 print(df.columns.tolist())
-df_pivot = pd.pivot_table(data=df, values='c', columns='x', index='y', aggfunc=np.mean)
+df_pivot = pd.pivot_table(data=df, values='c', columns='y', index='x', aggfunc=np.mean)
 
 fig, ax = plt.subplots(1, 1)
 mappable = ax.pcolor(df_pivot.columns, df_pivot.index, df_pivot.T)
