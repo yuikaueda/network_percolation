@@ -46,8 +46,8 @@ l2 = l2[l2>59]
 p1_new = []
 p2_new = []
 for i in range(60, 100):
-    p1_i = p1[i] - p1[60]
-    p2_i = p2[i] - p2[60]
+    p1_i = p1[i]/p1[60]
+    p2_i = p2[i]/p2[60]
     p1_new.append(p1_i)
     p2_new.append(p2_i)
 
@@ -64,5 +64,5 @@ plt.ylabel("Percolation plobability", fontsize = 18)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
-fig.savefig("seiikika_chanege_n80_150.png")
+fig.savefig("times_seiikika_chanege_n80_150.png")
 plt.show()

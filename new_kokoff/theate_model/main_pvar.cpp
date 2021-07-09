@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
+#include<time.h>
 #include<array>
 #include<string>
 #include<fstream>
@@ -16,7 +18,7 @@
 #define kc_on 20
 #define k0_off 0.2
 #define f 1e-3
-#define N_best 80
+#define N_best 250
 #define A 0.01
 #define B 5
 #define thea_max 0.7
@@ -102,10 +104,10 @@ int main(void){
   double k_off;
   double th_cos[N];
 
-  int run_num = 0;
+  int run_num = 1;
 
   FILE* fp0;
-  fp0 = fopen("test_long_n80_a001_b5.dat" , "w");
+  fp0 = fopen("long_n250_a001_b5.dat" , "w");
   if(fp0==NULL){
 	  printf("File open faild.");
   }
@@ -116,10 +118,11 @@ int main(void){
 			  P_b[i] = 0;
   }
 
-
+  
+  printf("start");
   for(int step_n = 0; step_n < step; step_n++){
-    run_num += 1;
-    printf("%d\n",run_num);
+      run_num += 1;
+      printf("%d\n",run_num);
 
 	for(int i = 0; i < 10; i++){
 	      mat[i].conect_a = 1;
