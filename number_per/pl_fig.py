@@ -11,7 +11,7 @@ data1 = np.loadtxt('center_t10000_nbest500.dat')
 #data8 = np.loadtxt('change_kcon_20_100_ss_100.dat')
 
 l1 = data1[:,0]
-p1 = data1[:,1]
+p1 = data1[:,2]
 
 #l2 = data2[:,0]
 #p2 = data2[:,1]
@@ -42,12 +42,13 @@ axe.plot(l1, p1, 'o-', c='black', label = r'$N_{s}=500$')#'$k_{on}^{c}=2,k_{off}
 #axe.plot(l4, p4, '-p',  c='green', label =r'$N_{s}=200$')#'$k_{on}^{c}=20,k_{off}=0.2$')
 #axe.plot(l5, p5, '-p',  c='yellow', label =r'$N_{s}=250$')#'$k_{on}^{c}=20,k_{off}=0.2$')
 #plt.xlabel("Time", fontsize = 18)
-plt.ylabel("Percolation probability", fontsize = 18)
+#plt.ylabel("Percolation probability", fontsize = 18)
 #plt.ylabel("Entropy", fontsize = 18)
+plt.ylabel("Number", fontsize = 18)
 #plt.ylim(0, 1.1)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
 #fig.savefig("entro_n200_t10000_nbest500.png")
-fig.savefig("P_n200_t10000_nbest500.png")
+fig.savefig("num_n200_t10000_nbest500.png")
 plt.show()
