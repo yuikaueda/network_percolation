@@ -48,5 +48,5 @@ plt.ylabel("S.D.", fontsize = 18)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
-fig.savefig("Time_sd_t1000_n.png")
+fig.savefig("sd_t1000_n.png")
 plt.show()
