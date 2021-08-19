@@ -13,7 +13,7 @@
 #define b_min M_PI/6
 #define RAN 100
 #define t_max 10000
-#define step 100
+#define step 1
 #define k0_on 0.35
 #define kc_on 20
 #define k0_off 0.2
@@ -22,7 +22,7 @@
 #define A 0.01
 #define B 5
 #define thea_max 0.8
-#define divide 5
+#define divide 10
 #define ndiv ((double)(1.0/(divide)))
 #define K_B 1.38e-23
 
@@ -144,11 +144,11 @@ int main(void){
   double entro[step][t_max];
   double max_n = divide*divide;
 
-  FILE* fp0;
-  char filename[256];
-  sprintf(filename,"center%d_t%d_nbest%d.dat",divide,t_max,N_best);
-  if((fp0 = fopen(filename,"w")) == NULL){printf("FAILED TO OPEN FILE.\n"); exit(1);};
+/*
 
+  sprintf(filename,"divide%d_t%d_nbest%d.dat",divide,t_max,N_best);
+  if((fp0 = fopen(filename,"w")) == NULL){printf("FAILED TO OPEN FILE.\n"); exit(1);};
+*/
   
   double N_fact = factorial((int)max_n);
 
@@ -291,6 +291,7 @@ int main(void){
 			//printf("SD=%f\tdens=%f\n",SD[step_n][t_run],dens[step_n][t_run]);
 
       //fact_cal
+
       for(int i=0; i<=N; i++){
         dive_num[i] = 0;
       }
@@ -318,6 +319,16 @@ int main(void){
       }  
       entro[step_n][t_run] = log((double)N_fact/(double)demo);
      // printf("E=%f\n",entro[step_n][t_run]);
+      if(t_run%500 == 0){
+          std::ofstream fp;
+          std::string filename;
+          filename = "div"+std::to_string(divide)+"t"+std::to_string(t_run)+".dat";
+          fp.open(filename, std::ios::out);
+          for(int cn_num=0; cn_num<=N; cn_num++){
+            fp << cn_num << "\t" << dive_num[cn_num] << std::endl;
+          }
+          fp.close();
+      }
 
 
 
@@ -508,11 +519,11 @@ int main(void){
 	  //fprintf(fp0, "%d\t%f\t%f\n",i,p_a,p_b);
 	  //printf("t=%d\tP_a=%f\tP_b=%f\n",i,p_a,p_b);
 
-	  fprintf(fp0, "%d\t%f\t%f\t%f\t%f\t%f\t%f\n",i,p_a,n_c,n_cc,ave_dd,ave_sd,ave_en);
+	  //fprintf(fp0, "%d\t%f\t%f\t%f\t%f\t%f\t%f\n",i,p_a,n_c,n_cc,ave_dd,ave_sd,ave_en);
 	  printf("t=%d\tP_a=%f\tnc=%f\tncc=%f\tdens=%f\tSD=%f\tE=%f\n",i,p_a,n_c,n_cc,ave_dd,ave_sd,ave_en);
   }
 
-  fclose(fp0);
+  //fclose(fp0);
   return 0;
 
 }
