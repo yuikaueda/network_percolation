@@ -13,7 +13,7 @@
 #define b_min M_PI/6
 #define RAN 100
 #define t_max 10000
-#define step 1
+#define step 100
 #define k0_on 0.35
 #define kc_on 20
 #define k0_off 0.2
@@ -122,7 +122,6 @@ int main(void){
       run_num += 1;
       printf("%d\n",run_num);
 
-  printf("A\n");
 	for(int i = 0; i < 10; i++){
 	      mat[i].conect_a = 1;
         mat[i].conect_aa = 0;
@@ -138,7 +137,6 @@ int main(void){
         th_cos[i] = (mat[i].y2 - mat[i].y1)/L;
   }
 
-  printf("B\n");
 
 	for(int i = 10; i < 20; i++){
 	      mat[i].conect_a = 0;
@@ -167,7 +165,6 @@ int main(void){
     	  mat[i].y2 = mat[i].y1 + L*sin(b); 
   }
 */
-  printf("C\n");
   	for(int i = 20; i < N; i++){
 
    	    mat[i].conect_a = 0;
@@ -188,13 +185,12 @@ int main(void){
   	}
 
 	      // printf("\n");
-  printf("D\n");
 
   	for(int t_run = 0; t_run < t_max; t_run++){
-      if (t_run%100 == 0){
+/*      if (t_run%100 == 0){
         printf("t = %d\n", t_run);
       }
-
+*/
       //N_c[t_run] = 0;
       //N_cc[t_run] = 0;
   			/*
@@ -208,12 +204,14 @@ int main(void){
 			
 			for(int i = 0; i < 10; i++){
 				mat[i].conect_b = 0;
+        mat[i].conect_aa = 0;
         mat[i].conect_bb = 0;
 			}
 
 			for(int i = 10; i < 20; i++){
 				mat[i].conect_a = 0;
         mat[i].conect_aa = 0;
+        mat[i].conect_bb = 0;
 			}
 
 			for(int i = 20; i < N; i++){
