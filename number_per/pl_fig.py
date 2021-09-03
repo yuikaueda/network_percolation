@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data1 = np.loadtxt('center5_t10000_nbest500.dat')
-#data2 = np.loadtxt('long_n100_a001_b5.dat')
+data1 = np.loadtxt('recenter5_t10000_nbest200.dat')
+data2 = np.loadtxt('recenter5_t10000_nbest500.dat')
 #data3 = np.loadtxt('long_n150_a001_b5.dat')
 #data4 = np.loadtxt('long_n200_a001_b5.dat')
 #data5 = np.loadtxt('long_n250_a001_b5.dat')
@@ -11,10 +11,10 @@ data1 = np.loadtxt('center5_t10000_nbest500.dat')
 #data8 = np.loadtxt('change_kcon_20_100_ss_100.dat')
 
 l1 = data1[:,0]
-p1 = data1[:,6]
+p1 = data1[:,1]
 
-#l2 = data2[:,0]
-#p2 = data2[:,1]
+l2 = data1[:,0]
+p2 = data1[:,2]
 
 #l3 = data3[:,0]
 #p3 = data3[:,1]
@@ -36,19 +36,19 @@ p1 = data1[:,6]
 
 fig, axe = plt.subplots(1, 1)
 
-axe.plot(l1, p1, 'o-', c='black', label = r'$N_{s}=500$')#'$k_{on}^{c}=2,k_{off}=0.2$')
-#axe.plot(l2, p2, 's-', c='red', label = r'$N_{s}=100$')#'$k_{on}^{c}=5,k_{off}=0.2$')
-#axe.plot(l3, p3, 'v-', c='blue', label = r'$N_{s}=150$')#'$k_{on}^{c}=10,k_{off}=0.2$')
+axe.plot(l1, p1, 'o', markersize=4, c='orangered', label = r'$P_{a}$')#'$k_{on}^{c}=2,k_{off}=0.2$')
+axe.plot(l2, p2, 's', markersize=4, c='green', label = r'$P_{b}$')#'$k_{on}^{c}=5,k_{off}=0.2$')
+#axe.plot(l3, p3, 'v-', c='seagreen', label = r'$N_{s}=150$')#'$k_{on}^{c}=10,k_{off}=0.2$')
 #axe.plot(l4, p4, '-p',  c='green', label =r'$N_{s}=200$')#'$k_{on}^{c}=20,k_{off}=0.2$')
 #axe.plot(l5, p5, '-p',  c='yellow', label =r'$N_{s}=250$')#'$k_{on}^{c}=20,k_{off}=0.2$')
 plt.xlabel("Time", fontsize = 18)
-#plt.ylabel("Percolation probability", fontsize = 18)
-plt.ylabel("Entropy", fontsize = 18)
+plt.ylabel("Percolation probability", fontsize = 18)
+#plt.ylabel("Entropy", fontsize = 18)
 #plt.ylabel("Number", fontsize = 18)
-#plt.ylim(0, 1.1)
+plt.ylim(0, 1)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
 #fig.savefig("entro_n200_t10000_nbest500.png")
-fig.savefig("entro5_n200_t10000_nbest500.png")
+fig.savefig("papb_t10000_nbest200.png")
 plt.show()
