@@ -27,7 +27,8 @@
 #define divide 5
 #define ndiv ((double)(1.0/(divide)))
 #define K_B 1.38e-23
-#define ramda 6.0
+#define sigma 0.1
+#define k_p 4.0
 #define rou_num 3.0
 
 double Uniform(){
@@ -141,7 +142,7 @@ int main(void){
 
   FILE* fp0;
   char filename[256];
-  sprintf(filename,"exporamda%.0f_center%d_t%d_nbest%d.dat",ramda,divide,t_max,N_best);
+  sprintf(filename,"gamma_k%.1f_sig%.1f_center%d_t%d_nbest%d.dat",k_p,sigma,divide,t_max,N_best);
   if((fp0 = fopen(filename,"w")) == NULL){printf("FAILED TO OPEN FILE.\n"); exit(1);};
 
   
@@ -159,7 +160,7 @@ int main(void){
     
     std::random_device rd;
     std::default_random_engine engine(rd());
-    std::exponential_distribution<> dist(ramda);
+    std::gamma_distribution<> dist(k_p, sigma);
     double L_total = 0.0;
     int N = 0;
     int N_i = 0;
