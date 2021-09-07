@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 import math
 import scipy.special as sps
 
-df = np.loadtxt('len_gamma_k4.0_sig0.1.dat')
+df = np.loadtxt('len_gamma_k3.0_sig0.1.dat')
 #df1 = df.round(2)
 
-N= 114
-k = 4.0
+N= 147
+k = 3.0
 sig = 0.1
 x = np.linspace(0,1,100)
 y =  x**(k-1)*(np.exp(-x/sig) / (sps.gamma(k)*sig**k))
@@ -17,7 +17,7 @@ fig = plt.figure()
 ax1 = fig.add_subplot(1, 1, 1)
 ax2 = ax1.twinx()
 
-ret = ax1.hist(df, bins=10, range=(0.0,0.7), histtype='barstacked', ec='black', color='coral')
+ret = ax1.hist(df, bins=10, range=(0.0,0.7), histtype='barstacked', ec='black', color='chartreuse')
 #ret1 = list(ret)
 #ret1[0] = ret1[0]/491
 print(ret[1])
@@ -34,5 +34,5 @@ ax1.set_ylim([0,200])
 ax2.set_ylim([0,10])
 ax2.legend(loc='best')
 #filename = f'hist_gamma_k{k}_sig{sig}.png'
-fig.savefig(f'hist_gamma_N{N}_k{k}_sig{sig}.png')
+fig.savefig(f'colar_hist_gamma_N{N}_k{k}_sig{sig}.png')
 plt.show()

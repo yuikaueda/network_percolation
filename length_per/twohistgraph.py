@@ -3,17 +3,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-df = np.loadtxt('len_ramda4.dat')
+df = np.loadtxt('len_ramda10.dat')
 #df1 = df.round(2)
 
 x = np.linspace(0,1,100)
-y = 4*np.exp(-4*x)
+y = 10*np.exp(-10*x)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(1, 1, 1)
 ax2 = ax1.twinx()
 
-ret = ax1.hist(df, bins=10, range=(0.0,0.7), histtype='barstacked', ec='black', color='coral')
+ret = ax1.hist(df, bins=10, range=(0.0,0.7), histtype='barstacked', ec='black', color='magenta')
 #ret1 = list(ret)
 #ret1[0] = ret1[0]/491
 print(ret[1])
@@ -29,5 +29,5 @@ plt.xlim([0,0.7])
 ax1.set_ylim([0,200])
 ax2.set_ylim([0,10])
 ax2.legend(loc='best')
-fig.savefig("twohist_len_ramda4.png")
+fig.savefig("color_twohist_len_ramda10.png")
 plt.show()
