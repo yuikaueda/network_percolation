@@ -18,11 +18,11 @@
 #define kc_on 20
 #define k0_off 0.2
 #define f 1e-3
-#define N_best 200
+#define N_best 500
 #define A 0.01
 #define B 10
 #define thea_max 0.8
-#define divide 5
+#define divide 10
 #define ndiv ((double)(1.0/(divide)))
 #define K_B 1.38e-23
 
@@ -146,7 +146,7 @@ int main(void){
 
   FILE* fp0;
   char filename[256];
-  sprintf(filename,"recenter%d_t%d_nbest%d.dat",divide,t_max,N_best);
+  sprintf(filename,"rerecenter%d_t%d_nbest%d.dat",divide,t_max,N_best);
   if((fp0 = fopen(filename,"w")) == NULL){printf("FAILED TO OPEN FILE.\n"); exit(1);};
 
   
