@@ -47,5 +47,5 @@ plt.ylabel("Number", fontsize = 18)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
-fig.savefig("Number80_a001b5.png")
+fig.savefig("re_Number80_a001b5.png")
 plt.show()

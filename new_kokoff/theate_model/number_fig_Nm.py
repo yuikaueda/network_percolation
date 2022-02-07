@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data1 = np.loadtxt('long_n200_a001_b5.dat')
+data1 = np.loadtxt('long_n80_a001_b5.dat')
 #data2 = np.loadtxt('long_n100_a001_b5.dat')
 #data3 = np.loadtxt('long_n150_a001_b5.dat')
 #data4 = np.loadtxt('long_n200_a001_b5.dat')
@@ -54,5 +54,5 @@ plt.ylabel("Number", fontsize = 18)
 #plt.xlim(0, 30)
 
 axe.legend(loc='best')
-fig.savefig("oriNm_Number200.png")
+fig.savefig("oriNm_Number80.png")
 plt.show()
